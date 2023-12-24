@@ -1,7 +1,8 @@
 import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
 
-import {  Roboto_Mono } from 'next/font/google'
+import { Source_Code_Pro, Roboto_Mono } from 'next/font/google'
+
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchProvider, SearchConfig } from 'pliny/search'
 import Header from '@/components/Header'
@@ -11,10 +12,17 @@ import siteMetadata from '@/data/siteMetadata'
 import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 
-
-const reboto_mono = Roboto_Mono({
+const space_grotesk = Roboto_Mono({
+  weight: '400',
   subsets: ['latin'],
-  
+  variable: '--font-space-grotesk',
+})
+ 
+
+const montserrat = Roboto_Mono( {
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-montserrat'
 })
 
 export const metadata: Metadata = {
@@ -61,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${reboto_mono.className} scroll-smooth`}
+      className={`${space_grotesk.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
