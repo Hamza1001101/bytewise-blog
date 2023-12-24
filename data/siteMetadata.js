@@ -1,8 +1,8 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'ByteWise ',
+  title: 'ByteCraft Chronicles',
   author: 'Hamza Farah',
-  headerTitle: 'ByteWise ',
+  headerTitle: 'ByteCraft Chronicles',
   description: 'Exploring Java, containers, cloud tech, Kubernetes, and Spring in the ever-evolving world of modern technology.',
   language: 'en-us',
   theme: 'system', // system, dark or light
