@@ -25,12 +25,16 @@ module.exports = {
         sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
       },
       colors: {
-        primary: colors.orange,
+        primary: colors.gray,
         gray: colors.gray,
+        paleSand: '#ebdbb2',
       },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
+            'p,li': {
+              fontSize: '14.4px'
+            },
             a: {
               color: theme('colors.primary.500'),
               '&:hover': {
@@ -46,21 +50,21 @@ module.exports = {
               fontWeight: '600',
             },
             code: {
-              color: theme('colors.indigo.500'),
+              color: theme('colors.fuchsia.500'),
             },
           },
         },
         invert: {
           css: {
             a: {
-              color: theme('colors.primary.500'),
+              color: theme('colors.lime.400'),
               '&:hover': {
-                color: `${theme('colors.primary.400')}`,
+                color: `${theme('colors.lime.500')}`,
               },
               code: { color: theme('colors.primary.400') },
             },
             'h1,h2,h3,h4,h5,h6': {
-              color: theme('colors.gray.100'),
+              color: theme('colors.paleSand'),
             },
           },
         },

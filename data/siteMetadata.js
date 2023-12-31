@@ -3,7 +3,8 @@ const siteMetadata = {
   title: 'ByteCraft Chronicles',
   author: 'Hamza Farah',
   headerTitle: 'ByteCraft Chronicles',
-  description: 'Exploring Java, containers, cloud tech, Kubernetes, and Spring in the ever-evolving world of modern technology.',
+  description:
+    'Exploring Java, containers, cloud tech, Kubernetes, and Spring in the ever-evolving world of modern technology.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://www.bytecraftchronicles.io/',
@@ -38,6 +39,9 @@ const siteMetadata = {
     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
     // Please add your .env file and modify it according to your selection
     provider: 'mailchimp',
+    API_KEY: process.env.API_KEY,
+    API_SERVER: process.env.API_SERVER,
+    AUDIENCE_ID: process.env.AUDIENCE_ID,
   },
   comments: {
     // If you want to use an analytics provider you have to add it to the
