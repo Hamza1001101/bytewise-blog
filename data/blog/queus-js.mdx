@@ -1,0 +1,172 @@
+---
+title: 'Use LinkedList when implementing QUEUES in JS'
+date: '2024-01-06'
+tags: ['Javascript', 'queues', 'data structure', 'algorithms']
+draft: true
+summary: There are many discussions about what to use when implementing queues in JavaScript. This is because Queues can be implemented in JavaScript differently using a combination of built-in, higher-level methods like push, pop, shift and unshift. However, since the shift and unshift methods move every item in the list, this approach, though convenient, is inefficient for a large dataset.
+---
+
+In this article, I'm not claiming that this is the only way to do it or that this is how you should do it. 
+WHY IS THIS THE CASE? Because there is no such thing as a "right" way of doing things in software development, 
+it is all dependent on your goals and what you want to achieve. 
+I'd like to bring this up, though, so you're aware of this issue when working with large datasets.
+
+#### So what are Queues anyway?
+In computer science, queues are defined as an Abstract Data Type, yea you read that correctly, not a data structure. 
+You can read more about ADT and queues here and here.
+As I previously said, there are many approaches to implementing queues, but regardless of which direction we take, 
+we must implement queues as a _**first-in-first-out structure.**_
+
+Moreover, Using LinkedList when implementing queues is going to help us perform the operations-enqueueing and dequeuing in **O(1)** time. 
+This is not the case, though, when you are using built-in shift, or unshift methods.
+
+#### Queues implementation using a LinkedList
+First, let's create our Node class 
+```javascript 
+class Node {
+ constructor(value) {
+    this.value = value
+    this.next = null 
+  }
+}
+```
+
+Secondly, now when we created our Node class, let's implement our queue. We'll start by creating our Queue class.
+
+```javascript 
+class Queue {
+  constructor() {
+    this.first = null
+    this.last = null
+    this.size = 0
+  }
+}
+```
+
+We created here a Queue class that has three properties. Note that I use the keyword size instead of length. 
+This is optional, but I prefer using size since Arrays have the length property.
+
+In queues, we need to implement several methods like `enqueue`(add an item to the back of the queue), 
+`dequeue`(remove an item from the front of the queue), `peek`(returns the next item that's to be removed), `isEmpty`(returns true if the queue is empty).
+
+Let's start with the `isEmpty()` method since it's the easiest one. It returns true if the size of our queue is empty.
+
+```javascript 
+isEmpty() {
+    return !this.size
+}
+```
+
+Let's now implement the `enqueue()` method. It looks like this.
+
+```javascript 
+enqueue(item) {
+    // Create node
+    const newNode = new Node(item)
+    /**
+     * * If our list is empty than both our 
+     * * first item and last item is going to point the new node. 
+     */
+    if (this.isEmpty()) {
+      this.first = newNode
+      this.last = newNode
+    }
+    else {
+      this.last.next = newNode
+      this.last = newNode
+    }
+    this.size++
+    return this 
+}
+```
+
+After that let's implement our `dequeue()` and `peek()` methods as well.
+
+```javascript 
+    /**
+    * @returns 
+    */
+
+    dequeue() { 
+      //* if our queue is empty we return null 
+      if (this.isEmpty()) return null
+      const itemToBeRemoved = this.first    
+      /**
+       * * if both our first and last node are pointing the same item
+       * * we dequeued our last node. 
+       */
+      if (this.first === this.last) {
+        this.last = null
+      }
+      this.first = this.first.next
+      this.size--
+      return itemToBeRemoved
+    }   
+    /**
+     * * Returns the next element to be dequeued. 
+     * @returns 
+     */
+    peek() {
+      return this.first
+    }
+```
+The whole implementation looks like this. 
+```javascript
+class Queue {
+  constructor() {
+    this.first = null
+    this.last = null
+    this.size = 0
+  }
+
+  isEmpty() {
+    return !this.size
+  }
+
+  enqueue(item) {
+    // Create node
+    const newNode = new Node(item)
+    /**
+     * * If our list is empty than both our
+     * * first item and last item is going to point the new node.
+     */
+    if (this.isEmpty()) {
+      this.first = newNode
+      this.last = newNode
+    } else {
+      this.last.next = newNode
+      this.last = newNode
+    }
+    this.size++
+    return this
+  }
+
+
+  dequeue() {
+    //* if our queue is empty we return null
+    if (this.isEmpty()) return null
+    const itemToBeRemoved = this.first
+
+    /**
+     * * if both our first and last node are pointing the same item
+     * * we dequeued our last node.
+     */
+    if (this.first === this.last) {
+      this.last = null
+    }
+    this.first = this.first.next
+    this.size--
+    return itemToBeRemoved
+  }
+
+  /**
+   * * Returns the next element to be dequeued.
+   * @returns
+   */
+  peek() {
+    return this.first
+  }
+}
+```
+
+Hope you find this post useful, any feedback and discussion are welcome. By3
