@@ -1,3 +1,5 @@
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ea742f12-2645-4efb-aa56-1af24625c99f/deploy-status)](https://app.netlify.com/sites/hazmafarah/deploys)
 ## Welcome to my blog
 
 Hey There!👋🏽
@@ -10,5 +12,4 @@ This project is using the following technologies
 
 
 The magic of the end product comes to life on **Netlify**, and here's the magic portal [link](https://www.bytecraftchronicles.io/) to take you there!
-
 
