@@ -7,3 +7,6 @@ Welcome to my digital construction zone! This site is a bit like my living room 
 This project is using the following technologies
 > - Next js
 > - Tailwind
+
+
+The magic of the end product comes to life on **Netlify**, and here's the magic portal [link](https://www.bytecraftchronicles.io/) to take you there!
