@@ -6,19 +6,93 @@ draft: true
 summary: There are many discussions about what to use when implementing queues in JavaScript. This is because Queues can be implemented in JavaScript differently using a combination of built-in, higher-level methods like push, pop, shift and unshift. However, since the shift and unshift methods move every item in the list, this approach, though convenient, is inefficient for a large dataset.
 ---
 
-In this article, I'm not claiming that this is the only way to do it or that this is how you should do it. 
-WHY IS THIS THE CASE? Because there is no such thing as a "right" way of doing things in software development, 
-it is all dependent on your goals and what you want to achieve. 
-I'd like to bring this up, though, so you're aware of this issue when working with large datasets.
-
 #### So what are Queues anyway?
-In computer science, queues are defined as an Abstract Data Type, yea you read that correctly, not a data structure. 
-You can read more about ADT and queues here and here.
-As I previously said, there are many approaches to implementing queues, but regardless of which direction we take, 
-we must implement queues as a _**first-in-first-out structure.**_
+In the context of computer science, queues aren't a fundamental data structure but rather a conceptual model or and abstract data type (ADT).
+An abstract data type defines a set of operations and behaviors but doesn't specify the concrete implementation details. That being said 
+queues represent a collection of elements that follows a specific order for adding and remoivng items—specifically, **the First In, First Out (FIFO)** order. 
+Which means that the first element added to the `queue` will be the first one to be removed. However, the actual implementation of a queue can be achieved using various data structures. 
 
-Moreover, Using LinkedList when implementing queues is going to help us perform the operations-enqueueing and dequeuing in **O(1)** time. 
-This is not the case, though, when you are using built-in shift, or unshift methods.
+Commonly, queues are implemented using arrays, linkedlists, 
+or even stacks, each providing different performance characteristics for operations like `enqueue` (adding to the queue) and `dequeue` (removing from the queue).
+So, while `queue` itself isn't a data structure, it is a concept or ADT that can be realized using various data structures in programming.
+
+In JavaScript, queues can be implemented in several ways:
+
+#### Queues implementation using Arrays
+Here is what it looks like when implementing queues using arrays. 
+
+```javascript 
+
+class ArrayQueue {
+    constructor() {
+        this.items = [];
+    }
+
+    // Enqueue: Adds an item to the back of the queue
+    enqueue(item) {
+        this.items.push(item);
+    }
+
+    // Dequeue: Removes an item from the front of the queue
+    dequeue() {
+        if(this.isEmpty()) {
+            return null;
+        }
+        return this.items.shift();
+    }
+
+    // Peek: Returns the front item without removing it
+    peek() {
+        if(this.isEmpty()) {
+            return null;
+        }
+        return this.items[0];
+    }
+
+    // Check if the queue is empty
+    isEmpty() {
+        return this.items.length === 0;
+    }
+
+    // Returns the size of the queue
+    size() {
+        return this.items.length;
+    }
+
+    // Display the queue contents
+    display() {
+        console.log(this.items);
+    }
+}
+
+// Example usage
+const queue = new ArrayQueue();
+queue.enqueue('a');
+queue.enqueue('b');
+queue.enqueue('c');
+queue.display();  // Output: ['a', 'b', 'c']
+console.log(queue.dequeue());  // Output: 'a'
+queue.display();  // Output: ['b', 'c']
+
+```
+In this example, `ArrayQueue` is a simple class that uses an array `(this.items)` to store the queue elements. 
+The `enqueue()` method adds elements to the end of the queue, while the `dequeue()` method removes elements from the front.
+The `peek()` method allows you to look at the front item without removing it, and `isEmpty()` checks if the queue is empty. 
+Finally, `size()` returns the number of elements in the queue, and `display()` is just a utility method for logging the queue's contents to the console.
+
+However, implementing queues using arrays in JavaScript can have several drawbacks including
+ - **Performance Issues with Large Queues:** The primary concern with using arrays for queues in JavaScript is performance, 
+ especially when dealing with large datasets. The shift() method, commonly used to remove the first element from the array (dequeue operation), 
+ can be inefficient for large arrays. This is because shift() needs to reindex every element in the array after removing the first element, 
+ leading to a time complexity of O(n) for each dequeue operation.
+ - **Memory Overhead:** Although JavaScript engines optimize array operations, using arrays for queues can still lead to higher memory overhead.
+  This is because arrays in JavaScript are dynamic and can have elements in non-contiguous memory locations, especially as the array grows or shrinks.
+ - **Undefined Behavior for Sparse Arrays:** If the queue implementation results in a sparse array (an array where not all elements are defined),
+  it can lead to unpredictable behavior and performance issues. This is more of a concern in scenarios where elements are added and removed frequently.
+ - **Limitation in Methods:** Arrays in JavaScript offer methods that can manipulate both ends of the array.
+  While this is generally useful, it can also lead to incorrect use of the queue when methods other than push() and shift() are used, 
+  potentially breaking the FIFO behavior.
+
 
 #### Queues implementation using a LinkedList
 First, let's create our Node class 
