@@ -1,27 +1,34 @@
 ---
 title: 'Mastering Queues in JavaScript: Array vs. LinkedList'
-date: '2024-01-06'
+date: '2024-01-14'
 tags: ['Javascript', 'queues', 'data structure', 'algorithms']
-draft: true
-summary: There are many discussions about what to use when implementing queues in JavaScript. This is because Queues can be implemented in JavaScript differently using a combination of built-in, higher-level methods like push, pop, shift and unshift. However, since the shift and unshift methods move every item in the list, this approach, though convenient, is inefficient for a large dataset.
+draft: false
+summary: Implementing queues in JavaScript offers multiple paths, primarily using a combination of built-in, higher-level methods like push, pop, shift and unshift. While convenient, you should note that shift and unshift can lead to performance drawbacks for large datasets, as they reindex the entire list, which can have some tangible effects, especially in data-intensive applications. 
 ---
 
+In computer science, queues are classified as abstract data types **(ADTs)**, distinct from fundamental data structures.
+Unlike concrete data types, which are defined by their specific structure and implementation details, ADTs 
+like queues are characterized by a set of operations and expected behaviors.
 
-Queues, in the realm of computer science, are categorized as abstract data types (ADTs) rather than fundamental data structures. 
-This distinction is crucial; while concrete data types are explicit in their structure and implementation,
- ADTs like queues focus on defining a set of operations and expected behaviors.
-The core principle of a queue is its order of operation, known as **First In, First Out (FIFO)**. 
-This term implies that the first element added to the queue is also the first to be removed. 
+A key attribute of queues is their operational order, termed **First In,
+First Out (FIFO)**. This principle dictates that elements are removed 
+from a queue in the same order they were added; the first element added is the first to be removed.
 
-It's important to note that queues are versatile; their actual implementation can be achieved using a range of different data structures
-such as Arrays, LinkedLists, or even Stacks, each providing different performance characteristics 
-for operations like `enqueue` (adding to the queue) and `dequeue` (removing from the queue). So, while queue itself isn't a data structure, 
-it is a concept or ADT that can be realised using various data structures in programming.
-
-We'll take a look different ways of implementing queues in Javascript
+What makes queues particularly adaptable is their implementation flexibility. 
+They can be implemented using various data structures, each offering unique performance attributes. 
+Common structures used include Arrays, LinkedLists, and Stacks. 
+These structures affect how `enqueue` (addition) and `dequeue` (removal) operations are executed. 
+Thus, while a queue is not a data structure in itself, it represents a 
+concept or ADT that can be materialized through multiple data structures in programming.
 
 
-#### Queues implementation using Arrays
+#### Exploring Queue Implementations in JavaScript
+
+Next, we'll delve into different methods for implementing queues in JavaScript, starting with the Array-based approach.
+
+
+
+###### Queues implementation using Arrays
 Here is what it looks like when implementing queues using arrays. 
 
 ```javascript 
@@ -97,7 +104,7 @@ However, implementing queues using arrays in JavaScript can have several drawbac
   potentially breaking the FIFO behavior.
 
 So what about using LinkedList? Glad you ask! Let's take a look the implementation of queues using LinkedList. 
-#### Queues implementation using a LinkedList
+###### Queues implementation using a LinkedList
 First, let's create our Node class 
 ```javascript 
 class Node {
@@ -169,9 +176,9 @@ peek() {
 } 
    
 ```
-Implementing queues using linked lists in JavaScript has its own set of pros and cons compared to using arrays. Here's a breakdown:
+Implementing queues using LinkedLists in JavaScript has its own set of pros and cons compared to using arrays. Here's a breakdown:
 
-##### Pros:
+###### Pros:
 
 - **Constant Time Operations:** The primary advantage of using linked lists for queues is the efficiency of operations. 
 Both enqueue (adding to the end) and dequeue (removing from the front) operations can be performed in constant time, O(1). 
@@ -186,7 +193,7 @@ This is because these operations don't require shifting elements as in an array.
 - **Flexibility:** Linked lists provide the flexibility to easily implement more complex types of queues, 
   such as a priority queue or a double-ended queue (deque), without significant changes to the underlying structure.
 
-##### Cons:
+###### Cons:
 
 - **Higher Memory Overhead per Element:** While linked lists can be more memory-efficient for large datasets, 
   each element in a linkedlist typically requires more memory than an array because of the additional pointers (references to next/previous elements).
