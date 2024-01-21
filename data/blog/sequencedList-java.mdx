@@ -6,8 +6,8 @@ draft: true
 summary: Introducing Java's new sequenced interface designed to represent collections with a defined encounter order. Each collection in this interface has a clearly defined first element, which is followed in a specific sequence up to the last element. Additionally, it offers a uniform set of APIs for retrieving the first and last elements, along with processing the elements in reverse order.
 ---
 ### Motivation
-Java's `Collection` framework lacks a `Collection` type that represents a sequence of elements with a  defined encouner order. it also lacks a uniquor set of
-operations that apply across such `Collection`s. These gaps have been repeated source of problems and complaints. 
+Java's `Collection` framework does not include a `Collection` type that signifies a sequence of elements with a specified order of encounters. 
+it is also missing a uniform set of operations applicable across such `Collections`. leading to ongoing developer dissatisfaction.
 
 For example, `List` and `Deque` both define an encounter order but their common supertype is `Collection`,
 which does not. Similarly, `Set` does not define an encounter order, and subtypes such as `HashSet` do not define one,
