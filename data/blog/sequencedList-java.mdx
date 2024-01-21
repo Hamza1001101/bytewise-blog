@@ -1,8 +1,38 @@
 ---
-title: 'Sequenced Collections '
+title: 'The Latest Features in Java 21 - Sequenced Collection'
 date: '2024-01-20'
 tags: ['Java', 'data structure', 'algorithms']
 draft: true
 summary: Introducing new interface to represent collections with a defined encounter order. Each such collection has a well-defined first element, and so forth, up to the last element. It also provides uniform API's for accessing its first and last elements, and for processing its elements in reverse order. 
 ---
+### Motivation
+Java's `Collection` framework lacks a `Collection` type that represents a sequence of elements with a  defined encouner order. it also lacks a uniquor set of
+operations that apply across such `Collection`s. These gaps have been repeated source of problems and complaints. 
 
+For example, `List` and `Deque` both define an encounter order but their common supertype is `Collection`,
+which does not. Similarly, `Set` does not define an encounter order, and subtypes such as `HashSet` do not define one,
+but subtypes such as `SortedSet` and `LinkedHashSet` do. Support for encounter order is thus spread across the type hierarchy,
+making it difficult to express certain useful concepts in APIs. 
+Neither `Collection` nor List can describe a parameter or return value that has an encounter order. 
+`Collection` is too general, relegating such constraints to the prose specification, 
+possibly leading to hard-to-debug errors. List is too specific, excluding SortedSet and LinkedHashSet.
+
+A related problem is that view collections are often forced to downgrade to weaker semantics. 
+Wrapping a LinkedHashSet with `Collections::unmodifiableSet` yields a Set, discarding the information about encounter order.
+
+Without interfaces to define them, operations related to encounter order are either inconsistent or missing. 
+While many implementations support getting the first or last element, each collection defines its own way, 
+and some are not obvious or are missing entirely:
+
+    |               | Retrieving first element      | Retrieving last element      |
+    |---------------| ---------------------------   | ---------------------------- |
+    List            | list.get(0)                   | list.get(list.size()-1)      |
+    LinkedHashSet   | linkedHashSet.iterator().next | doesn't exist                |
+    SortedSet       | sortedSet.first()             | sortedSet.last()             |
+    Deque           | deque.getFirst()              | deque.getLast()              |
+
+As you can see, some of these are unnecessarliy cumbersom, such as getting the last element of a List, and the only way to 
+get the last element of a LinkedHashSet is to iterate the entire set. All these differences led to fragmented codebases and complexity, 
+making it challenging to express certain useful concepts in APIs.
+
+### The SequencedCollection Interface to the rescue
