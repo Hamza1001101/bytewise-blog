@@ -3,7 +3,7 @@ title: 'The Latest Features in Java 21 - Sequenced Collection'
 date: '2024-01-20'
 tags: ['Java', 'data structure', 'algorithms']
 draft: true
-summary: Introducing new interface to represent collections with a defined encounter order. Each such collection has a well-defined first element, and so forth, up to the last element. It also provides uniform API's for accessing its first and last elements, and for processing its elements in reverse order. 
+summary: Introducing Java's new sequenced interface designed to represent collections with a defined encounter order. Each collection in this interface has a clearly defined first element, which is followed in a specific sequence up to the last element. Additionally, it offers a uniform set of APIs for retrieving the first and last elements, along with processing the elements in reverse order.
 ---
 ### Motivation
 Java's `Collection` framework lacks a `Collection` type that represents a sequence of elements with a  defined encouner order. it also lacks a uniquor set of
@@ -31,8 +31,8 @@ and some are not obvious or are missing entirely:
     SortedSet       | sortedSet.first()             | sortedSet.last()             |
     Deque           | deque.getFirst()              | deque.getLast()              |
 
-As you can see, some of these are unnecessarliy cumbersom, such as getting the last element of a List, and the only way to 
-get the last element of a LinkedHashSet is to iterate the entire set. All these differences led to fragmented codebases and complexity, 
-making it challenging to express certain useful concepts in APIs.
+Some operations, such as obtaining the last element of a List, are unnecessarily complex, and others, 
+like retrieving the last element of a LinkedHashSet, require full iteration through the set - a process that is not straightforward. 
+These limitations have consistently led to technical challenges.
 
 ### The SequencedCollection Interface to the rescue
