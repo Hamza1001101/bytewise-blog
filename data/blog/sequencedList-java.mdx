@@ -14,15 +14,24 @@ their overarching category, `Collection`, does not enforce any order. This is si
 which also does not require a specific arrangement, with certain types like `HashSet` following suit. Yet,
 some subsets of `Set`, such as `SortedSet` and `LinkedHashSet`, do adhere to a defined order. 
 This inconsistency in enforcing order across the hierarchy complicates the expression of certain concepts 
-in programming interfaces. As a result, specifying a parameter or return type that preserves order becomes challenging: 
+in the API. As a result, specifying a parameter or return type that preserves order becomes challenging: 
 `Collection` is too broad, while `List` is too narrow, excluding types like `SortedSet` and `LinkedHashSet`
 that do maintain an order.
 
 A similar issue arises when collections that support a specific order, like `LinkedHashSet`, 
-are wrapped in a way that restricts their functionality, such as using 
+are wrapped in a way that restricts their functionality, take a look the following code snippet. 
 ```java 
-Collections::unmodifiableSet
+    LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>();
+    linkedHashSet.add("Apple");
+    linkedHashSet.add("Banana");
+    linkedHashSet.add("Cherry");
+
+     // Wrap the LinkedHashSet in an unmodifiable set
+    Set<String> unmodifiableSet = Collections.unmodifiableSet(linkedHashSet);
 ```
+The `LinkedHashSet` is wrapped with `Collections.unmodifiableSet`, making it immutable. 
+While the original order of elements is maintained, the wrapped set doesn't allow any modifications, and the specific qualities
+of `LinkedHashSet` (like its ordered nature) are not directly accessible or evident through the unmodifiable set interface.
 This action strips away the order information, reducing the collection to a basic `Set` with no guaranteed order.
 
 Furthermore, without specific interfaces to handle order, methods to access ordered elements,
@@ -39,7 +48,7 @@ Here is an example:
 | Deque          | deque.getFirst()              | deque.getLast()              |
 ```
 Some operations, such as obtaining the last element of a List, are unnecessarily complex, and others, 
-like retrieving the last element of a LinkedHashSet, require full iteration through the `Set` - a process that is not straightforward. 
+like retrieving the last element of a `LinkedHashSet`, require full iteration through the `Set` - a process that is not straightforward. 
 These limitations have consistently led to technical challenges.
 
 ### The SequencedCollection Interface to the rescue
@@ -109,7 +118,7 @@ _Something that looks like this_
     ```java 
         SequencedMap<Integer, Integer> map = new LinkedHashMap<>();
         map.putIfAbsent(0, 34);
-        map.firstEntry();
+        map.firstEntry(); // Returns the first key-value mapping in this map, or null if the map is empty.
     ```
 
 #### Conclution
