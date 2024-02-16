@@ -9,19 +9,7 @@ const MAX_DISPLAY = 5
 export default function Home({ posts }) {
   return (
     <>
-      <div className="my-6 flex flex-col items-center gap-x-12 xl:mb-12 xl:flex-row">
-        <div className="mr-8 pt-6">
-          <h1 className="pb-6 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-[#ebdbb2] sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Hi, I'm Hamza Farah
-          </h1>
-          <h2 className="prose text-lg text-gray-600 dark:text-[#ebdbb2]">
-            {`Welcome to my blog - ${siteMetadata.description}`}
-          </h2>
-        </div>
-        <div className="mx-2 my-12 flex w-[300px] items-center justify-center sm:w-[400px] md:w-[550px]" >
-          <NewsletterForm title="Get the latest geeky goodies in your inbox – fast, no snail mail involved!"/>
-        </div>
-      </div>
+      
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-dark-900 text-3xl font-extrabold leading-9 tracking-tight dark:text-[#ebdbb2] sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
@@ -80,6 +68,12 @@ export default function Home({ posts }) {
             )
           })}
         </ul>
+      </div>
+      <div className="my-6 flex flex-col items-center gap-x-12 xl:mb-12 xl:flex-row">
+     
+        <div className="mx-2 my-12 flex w-[300px] items-center justify-center sm:w-[400px] md:w-[550px]" >
+          <NewsletterForm title="Get the latest geeky goodies in your inbox – fast, no snail mail involved!"/>
+        </div>
       </div>
       {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base font-medium leading-6">

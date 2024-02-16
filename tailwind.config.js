@@ -33,7 +33,7 @@ module.exports = {
         DEFAULT: {
           css: {
             'p,li': {
-              fontSize: '14.4px'
+              fontSize: '15px',
             },
             a: {
               color: theme('colors.primary.500'),
