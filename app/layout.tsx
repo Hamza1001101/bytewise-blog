@@ -11,7 +11,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 
-//import localFont from 'next/font/local'
+import localFont from 'next/font/local'
 /*const reboto_mono = Roboto_Mono({
   subsets: ['latin'],
 })*/
@@ -23,6 +23,7 @@ const poppins = Poppins({
 })
 
 //const menlo = localFont({ src: './../public/static/Menlo-Regular.woff2' })
+const mona_sans = localFont({src:  './../public/static/Mona-Sans.woff2' })
 
 
 export const metadata: Metadata = {
@@ -69,7 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${poppins.className} scroll-smooth`}
+      className={`${mona_sans.className} scroll-smooth`}
       suppressHydrationWarning
     >
       <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
