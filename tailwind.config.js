@@ -28,6 +28,8 @@ module.exports = {
         primary: colors.gray,
         gray: colors.gray,
         paleSand: '#ebdbb2',
+        'dark-bg': '#282828',
+        'dark-heading': '#b3b3b3'
       },
       typography: ({ theme }) => ({
         DEFAULT: {
@@ -40,7 +42,7 @@ module.exports = {
               '&:hover': {
                 color: `${theme('colors.primary.600')}`,
               },
-              code: { color: theme('colors.primary.400') },
+              //code: { color: theme('colors.primary.400') },
             },
             'h1,h2': {
               fontWeight: '700',
@@ -57,19 +59,29 @@ module.exports = {
         invert: {
           css: {
             a: {
-              color: theme('colors.lime.400'),
-              '&:hover': {
-                color: `${theme('colors.lime.500')}`,
-              },
-              code: { color: theme('colors.primary.400') },
+              color: theme('colors.paleSand'),
+             // code: { color: theme('colors.primary.400') },
             },
             'h1,h2,h3,h4,h5,h6': {
               color: theme('colors.paleSand'),
             },
           },
         },
+        dark: {
+          css: {
+            color: theme('colors.slate.50'), 
+            'h1, h2,h3,h4': {
+              color: theme('colors.paleSand')
+            }
+          }
+        }
       }),
     },
+  },
+  variants : {
+    extend: {
+      typography: ['dark']
+    }
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }

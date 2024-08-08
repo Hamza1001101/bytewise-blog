@@ -44,7 +44,7 @@ such as in multi-threaded applications or when working with data transfer object
 
 ## Some key characteristics of Records
 
-- ###### A record can be top-level or nested, and it can be generic.
+- A record can be top-level or nested, and it can be generic.
 		  ```java 
 		 	public record Pair<T, U>(T first, U second) {}
 
@@ -57,7 +57,7 @@ such as in multi-threaded applications or when working with data transfer object
 		```
 		`Pair` is a __generic top-level__ record that can hold two values of potentially different types.
  - Records are final and instantiated via the new keyword, and they cannot extend any other class.
- - ##### Record class body may declare static methods, static fields, static initializers, constructors, instance methods, and nested types.
+ - Record class body may declare static methods, static fields, static initializers, constructors, instance methods, and nested types.
 	```java 
 	public record ExampleRecord(int id, String name) {
 		 // Static field
@@ -88,7 +88,7 @@ such as in multi-threaded applications or when working with data transfer object
  - Record classes can be nested. Because immediately enclosing instances can add states to the record, a nested record is implicitly static
 
  - Record classes can be serialized and deserialized. The serialization process is performed using record components, and the de-serialization process is performed using the canonical constructor
- - ##### Java Record type definitions can also contain multiple constructors. 
+ - Java Record type definitions can also contain multiple constructors. 
  	_Below is an example of a Java Record that has an additional constructor._
 
 	```java 

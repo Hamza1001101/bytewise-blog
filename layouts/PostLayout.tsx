@@ -74,7 +74,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       )}
                       <dl className="whitespace-nowrap text-sm font-medium leading-5">
                         <dt className="sr-only">Name</dt>
-                        <dd className="dark:text-lime-400">{author.name}</dd>
+                        <dd className="dark:text-[#ebdbb2]">{author.name}</dd>
                         <dt className="sr-only">Twitter</dt>
                         <dd>
                           {author.twitter && (
@@ -115,7 +115,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
                 {tags && (
                   <div className="py-4 xl:py-8">
-                    <h2 className="text-xs uppercase tracking-wide dark:text-lime-400">
+                    <h2 className="text-xs uppercase tracking-wide dark:text-[#ebdbb2]">
                       Tags
                     </h2>
                     <div className="flex flex-wrap">
@@ -129,7 +129,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
                     {prev && prev.path && (
                       <div>
-                        <h2 className="text-xs uppercase tracking-wide dark:text-lime-400">
+                        <h2 className="text-xs uppercase tracking-wide dark:text-[#ebdbb2]">
                           Previous Article
                         </h2>
                         <div className="text-primary-500 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400">
@@ -139,7 +139,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     )}
                     {next && next.path && (
                       <div>
-                        <h2 className="text-xs uppercase tracking-wide dark:text-lime-400">
+                        <h2 className="text-xs uppercase tracking-wide dark:text-[#ebdbb2]">
                           Next Article
                         </h2>
                         <div className="text-primary-500 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400">
@@ -153,7 +153,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <div className="pt-4 xl:pt-8">
                 <Link
                   href={`/${basePath}`}
-                  className="dark:text-lime-400 hover:text-primary-600 dark:hover:text-lime-500"
+                  className="dark:text-[#ebdbb2] hover:text-primary-600 dark:hover:text-[#ebdbb2]"
                   aria-label="Back to the blog"
                 >
                   &larr; Back to the blog
